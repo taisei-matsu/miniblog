@@ -20,4 +20,14 @@ class Post extends Model
     {
         return $this->hasMany(Reply::class);
     }
+
+    public function bookmarkingPosts()
+    {
+        return $this->belongsToMany(Post::class, 'bookmarks');
+    }
+
+    public function bookmarkingUsers()
+    {
+        return $this->belongsToMany(User::class, 'bookmarks');
+    }
 }

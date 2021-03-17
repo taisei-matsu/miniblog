@@ -34,3 +34,9 @@ Route::prefix('posts')->as('posts.')->group(function () {
     // auth が適用されない (ログインしてなくても閲覧可)
     Route::get('{post}', 'PostController@show')->name('show');
 });
+
+Route::middleware('auth')->prefix('bookmarks')->as('bookmarks.')->group(function () {
+    Route::get('/', 'BookmarkController@index')->name('index');
+    Route::post('{post}', 'BookmarkController@add')->name('add');
+    Route::post('{post}/remove', 'BookmarkController@remove')->name('remove');
+});

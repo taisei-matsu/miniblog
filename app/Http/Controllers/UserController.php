@@ -34,13 +34,13 @@ class UserController extends Controller
     }
 
     public function delete(Post $post)
-{
-    if (Auth::id() !== $post->user_id) {
-        abort(403);
+    {
+        if (Auth::id() !== $post->user_id) {
+            abort(403);
+        }
+
+        $post->delete();
+
+        return redirect()->to('/');
     }
-
-    $post->delete();
-
-    return redirect()->to('/');
-}
 }
